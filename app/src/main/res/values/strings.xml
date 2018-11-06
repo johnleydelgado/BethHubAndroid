@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Bethub</string>
+
+
+    <string name="login_button"> Login </string>
+
+</resources>
