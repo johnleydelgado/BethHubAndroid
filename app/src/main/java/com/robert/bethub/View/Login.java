@@ -25,8 +25,11 @@ import com.robert.bethub.R;
 
 import org.json.JSONObject;
 
+import java.util.List;
+
 import eu.amirs.JSON;
 import io.realm.Realm;
+import io.realm.RealmList;
 
 
 public class Login extends AppCompatActivity {
@@ -42,6 +45,7 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.login_activity);
         AndroidNetworking.initialize(getApplicationContext());
         Button signinButton = findViewById(R.id.signinButton);
+        Button signupButton = findViewById(R.id.signupButton);
         spinner = findViewById(R.id.progressBar);
         spinner.setVisibility(View.GONE);
         emailTxtField = findViewById(R.id.usernameTextField);
@@ -52,6 +56,12 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                     userLogin();
+            }
+        });
+        signupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Alert.showAlertWithAction(Login.this,"Go to sign up page",signUp.class);
             }
         });
         Realm.init(this);
@@ -80,21 +90,38 @@ public class Login extends AppCompatActivity {
                         @Override
                         public void onResponse(JSONObject response) {
                             spinner.setVisibility(View.GONE);
-                            Log.d("tag1","response is : " + response);
+                           // Log.d("tag1","response is : " + response);
                             JSON json = new JSON(response);
                             String status = json.key("status").stringValue();
                             String id = json.key("user").key("data").key("ID").stringValue();
                             String username = json.key("user").key("data").key("user_login").stringValue();
                             String email = json.key("user").key("data").key("user_email").stringValue();
+
+                            JSON membership = json.key("memberships").index(0);
+                           // Log.d("tag membership",membership.stringValue());
+
+
+
                             if (status == "true") {
                                 Alert.showAlertWithAction(Login.this,"Successful login",MainActivity.class);
                                 Realm realm = Realm.getDefaultInstance();
                                 realm.beginTransaction();
+                                RealmList<String> listMembership = new RealmList();
+                                for(int i=0; i<membership.count(); i++){
+
+                                    JSON info = membership.index(i);
+                                    String membershipTitle = info.key("title").stringValue();
+                                    listMembership.add(membershipTitle);
+                                   // Log.d("tag is",membershipTitle);
+                                }
+
                                 User user = realm.createObject(User.class);
                                 user.email = email;
                                 user.id = Integer.parseInt(id);
                                 user.username = username;
                                 user.status = status;
+                                user.title = listMembership;
+                                Log.d("tag is", user.title.toString());
                                 realm.commitTransaction();
                                 //Alert.showAlert(Login.this,"username or password is incorrect");
                             }

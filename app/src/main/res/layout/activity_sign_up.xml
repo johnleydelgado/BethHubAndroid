@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+    android:id="@+id/signupView"
+tools:context=".View.signUp">
+
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_margin="50dp"
+    android:paddingTop="10dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:padding="10dp"
+        android:text="Sign Up"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="@color/darkBlue"
+        android:textSize="40dp"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:hint="firstname"
+        android:id="@+id/firstnameLabel"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:hint="lastname"
+        android:id="@+id/lastnameLabel"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:hint="username"
+        android:id="@+id/usernameLabel"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:hint="email"
+        android:id="@+id/emailLabel"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:hint="password"
+        android:id="@+id/passwordLabel"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:hint="password confirmation"
+        android:id="@+id/passwordConfirmationLabel"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:hint="coupon code"
+        android:id="@+id/couponLabel"/>
+
+    <android.support.v7.widget.AppCompatRadioButton
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:text="I have read and agree to the Terms Of Service*"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+
+    <android.support.v7.widget.AppCompatRadioButton
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:text="This application collects names, emails and other user information. I consent to the terms set forth in the Privacy Policy." />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        style="@android:style/Widget.Button"
+        android:background="@color/colorAccent"
+        android:layout_marginTop="20dp"
+        android:text="Sign up"
+        android:id="@+id/signupButton"
+        android:textColor="@android:color/white"
+        tools:background="@color/colorAccent"/>
+</LinearLayout>
+</ScrollView>

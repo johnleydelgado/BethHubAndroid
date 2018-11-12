@@ -20,7 +20,8 @@
         </activity>
         <activity android:name=".View.Login" />
         <activity android:name=".View.MembershipActivity" />
-        <activity android:name=".View.ContentActivity"></activity>
+        <activity android:name=".View.ContentActivity" />
+        <activity android:name=".View.signUp"></activity>
     </application>
 
 </manifest>

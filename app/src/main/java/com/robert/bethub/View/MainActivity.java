@@ -13,6 +13,9 @@ import com.robert.bethub.Model.User;
 import com.robert.bethub.Model.membershipData;
 import com.robert.bethub.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
@@ -32,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private ImageView greyhound;
     private ImageView earlybird;
     private ImageView gatespeed;
+
+    private ArrayList<String>  listTitle =new ArrayList<String>();
 
     public membershipData membershipdata;
     @Override
@@ -69,7 +74,15 @@ public class MainActivity extends AppCompatActivity {
         else{
             User user = result.get(0);
             loginSucess = Boolean.parseBoolean(user.status);
-            Log.d("tag1","User is :" + user.status);
+            int titleNumber = user.title.size();
+            for (int index = 0; index < titleNumber;index++){
+                listTitle.add(user.title.get(index));
+
+            }
+
+            Log.d("tag1","Members :" + listTitle);
+
+
         }
 
 
@@ -126,10 +139,24 @@ public class MainActivity extends AppCompatActivity {
                 if (loginSucess == false){
                     Alert.showAlert(MainActivity.this,"You need to login to access this feature");
                 }
+                else {
+
+                    List <String> listClone = new ArrayList<String>();
+                    for (String string : listTitle) {
+                        if(string.matches("(?i)(Target).*")){
+                            listClone.add(string);
+                        }
+                    }
+
+                    if (!listClone.isEmpty()||listTitle.contains("VIP")){
+                        Intent intent = new Intent(getApplicationContext(), MembershipActivity.class);
+                        intent.putExtra("numberDrawable", 0);
+                        intent.putExtra("membershipTitle", "target-racing");
+                        startActivity(intent);
+                }
                 else{
-                    Intent intent = new Intent(getApplicationContext(),MembershipActivity.class);
-                    intent.putExtra("numberDrawable",0);
-                    startActivity(intent);
+                        Alert.showAlert(MainActivity.this,"Upgrade your membership to access this feature");
+                    }
                 }
 
             }
@@ -141,11 +168,22 @@ public class MainActivity extends AppCompatActivity {
                 if (loginSucess == false){
                     Alert.showAlert(MainActivity.this,"You need to login to access this feature");
                 }
-                else{
-
-                    Intent intent = new Intent(getApplicationContext(),MembershipActivity.class);
-                    intent.putExtra("numberDrawable",1);
-                    startActivity(intent);
+                else {
+                    List <String> listClone = new ArrayList<String>();
+                    for (String string : listTitle) {
+                        if(string.matches("(?i)(Greyhound).*")){
+                            listClone.add(string);
+                        }
+                    }
+                    if (!listClone.isEmpty() || listTitle.contains("VIP")) {
+                        Intent intent = new Intent(getApplicationContext(), MembershipActivity.class);
+                        intent.putExtra("numberDrawable", 1);
+                        intent.putExtra("membershipTitle", "Greyhound");
+                        startActivity(intent);
+                    }
+                    else{
+                        Alert.showAlert(MainActivity.this,"Upgrade your membership to access this feature");
+                    }
                 }
             }
         });
@@ -157,9 +195,22 @@ public class MainActivity extends AppCompatActivity {
                     Alert.showAlert(MainActivity.this,"You need to login to access this feature");
                 }
                 else{
+                    List <String> listClone = new ArrayList<String>();
+                    for (String string : listTitle) {
+                        if(string.matches("(?i)(Early Racing).*")){
+                            listClone.add(string);
+                        }
+                    }
+                    if (!listClone.isEmpty() || listTitle.contains("VIP")||listTitle.contains("Early Bird Racing Yearly")) {
                     Intent intent = new Intent(getApplicationContext(),MembershipActivity.class);
                     intent.putExtra("numberDrawable",2);
+                    intent.putExtra("membershipTitle","earlybird-racing");
                     startActivity(intent);
+
+                }
+                    else{
+                        Alert.showAlert(MainActivity.this,"Upgrade your membership to access this feature");
+                    }
                 }
             }
         });
@@ -171,9 +222,22 @@ public class MainActivity extends AppCompatActivity {
                     Alert.showAlert(MainActivity.this,"You need to login to access this feature");
                 }
                 else{
-                    Intent intent = new Intent(getApplicationContext(),MembershipActivity.class);
-                    intent.putExtra("numberDrawable",3);
-                    startActivity(intent);
+                    List <String> listClone = new ArrayList<String>();
+                    for (String string : listTitle) {
+                        if(string.matches("(?i)(Gate).*")){
+                            listClone.add(string);
+                        }
+                    }
+
+                    if (!listClone.isEmpty() || listTitle.contains("VIP")) {
+                        Intent intent = new Intent(getApplicationContext(),MembershipActivity.class);
+                        intent.putExtra("numberDrawable",3);
+                        intent.putExtra("membershipTitle","gatespeed");
+                        startActivity(intent);
+                    }
+                    else{
+                        Alert.showAlert(MainActivity.this,"Upgrade your membership to access this feature");
+                    }
                 }
             }
         });

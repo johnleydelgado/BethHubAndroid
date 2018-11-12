@@ -1,18 +1,12 @@
 package com.robert.bethub.View;
 
 import android.content.Context;
-import android.os.Debug;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -21,13 +15,11 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.robert.bethub.Adapter.MembershipAdapter;
 
 import com.robert.bethub.Model.membershipData;
-import com.robert.bethub.Model.membershipStaticData;
 
 import com.robert.bethub.R;
 
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import eu.amirs.JSON;
@@ -57,14 +49,15 @@ public class MembershipActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         APICalls();
 
-
-
     }
 
     private void APICalls(){
         data = new ArrayList<membershipData>();
 
-        AndroidNetworking.get("https://bethub.pro/wp-json/bethubpro/v1/posts/category/gatespeed")
+
+        String memberTitle = getIntent().getStringExtra("membershipTitle");
+
+        AndroidNetworking.get("https://bethub.pro/wp-json/bethubpro/v1/posts/category/"+memberTitle)
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
