@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "313625359845",
+    "firebase_url": "https://bethubpro-71ba2.firebaseio.com",
+    "project_id": "bethubpro-71ba2",
+    "storage_bucket": "bethubpro-71ba2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:313625359845:android:21417f677dd904cd",
+        "android_client_info": {
+          "package_name": "com.robert.bethub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "313625359845-8k8hth66eqneums7v475tkb77puvfvpg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.robert.bethub",
+            "certificate_hash": "c81ad5aba36b27074419b1c53ae80d04d2b2569c"
+          }
+        },
+        {
+          "client_id": "313625359845-6dc9jv99gf94o4o1t0bmnb19t3vvd7tg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVzR5ImrLwRHsngdGFQiYfBA4QdrLt-64"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "313625359845-6dc9jv99gf94o4o1t0bmnb19t3vvd7tg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

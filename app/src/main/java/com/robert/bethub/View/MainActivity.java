@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.robert.bethub.Classes.Alert;
 import com.robert.bethub.Model.User;
 import com.robert.bethub.Model.membershipData;
@@ -37,12 +38,14 @@ public class MainActivity extends AppCompatActivity {
     private ImageView gatespeed;
 
     private ArrayList<String>  listTitle =new ArrayList<String>();
+    private FirebaseAuth mAuth;
 
     public membershipData membershipdata;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mAuth = FirebaseAuth.getInstance();
         Realm.init(this);
 
         login = findViewById(R.id.loginButton);
@@ -61,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
         membership();
 
     }
+
+
 
 
     public void loginUI() {

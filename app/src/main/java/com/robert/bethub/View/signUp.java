@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -18,6 +20,7 @@ import com.robert.bethub.Model.User;
 import com.robert.bethub.Model.userSignUp;
 import com.robert.bethub.R;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import eu.amirs.JSON;
@@ -35,7 +38,7 @@ public class signUp extends AppCompatActivity {
     private EditText passwordConfirmation;
     private EditText couponcode;
     private Button signupButton;
-
+    private ProgressBar spinner;
     private View signupView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,9 @@ public class signUp extends AppCompatActivity {
         couponcode =  findViewById(R.id.couponLabel);
         signupView = findViewById(R.id.signupView);
         signupButton = findViewById(R.id.signupButton);
+
+        spinner = findViewById(R.id.progressBar);
+        spinner.setVisibility(View.GONE);
         setupUI(signupView);
 
         signupButton.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +65,7 @@ public class signUp extends AppCompatActivity {
                 signUp();
             }
         });
-
+        AndroidNetworking.initialize(getApplicationContext());
 
     }
 
@@ -69,8 +75,8 @@ public class signUp extends AppCompatActivity {
         String lname = lastname.getText().toString().trim();
         String uname = username.getText().toString().trim();
         String em = email.getText().toString().trim();
-        String pass = password.getText().toString().trim();
-        String passC = passwordConfirmation.getText().toString().trim();
+        String pass = password.getText().toString();
+        String passC = passwordConfirmation.getText().toString();
         String cc = couponcode.getText().toString().trim();
 
         if(fname.isEmpty()){
@@ -101,30 +107,44 @@ public class signUp extends AppCompatActivity {
             couponcode.setError("Please fill up all the required fields");
             couponcode.requestFocus();
         }
-        else if(pass != passC){
-            password.setError("Your password didn`t match please try again");
-            password.requestFocus();
-            passwordConfirmation.setError("Your password didn`t match please try again");
-            passwordConfirmation.requestFocus();
-        }
+//        else if(pass != passC){
+//            password.setError("Your password didn`t match please try again");
+//            password.requestFocus();
+//            passwordConfirmation.setError("Your password didn`t match please try again");
+//            passwordConfirmation.requestFocus();
+//        }
         else{
-            userSignUp user = new userSignUp();
-            user.firstname = fname;
-            user.lastname = lname;
-            user.username = uname;
-            user.email = em;
-            user.password = pass;
-            
-           // spinner.setVisibility(View.VISIBLE);
+//            userSignUp user = new userSignUp();
+//            user.firstname = fname;
+//            user.lastname = lname;
+//            user.username = uname;
+//            user.email = em;
+//            user.password = pass;
+
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put("firstname", fname);
+                jsonObject.put("lastname", lname);
+                jsonObject.put("username", uname);
+                jsonObject.put("email", em);
+                jsonObject.put("password", pass);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            Toast.makeText(this, "Run", Toast.LENGTH_SHORT).show();
+           spinner.setVisibility(View.VISIBLE);
             AndroidNetworking.post("https://bethub.pro/wp-json/bethubpro/v1/users/register")
-                    .addBodyParameter(user)
+                    //.addBodyParameter(user)
+                    .addJSONObjectBody(jsonObject)
                     .setPriority(Priority.MEDIUM)
                     .build()
                     .getAsJSONObject(new JSONObjectRequestListener() {
                         @Override
                         public void onResponse(JSONObject response) {
-                            //spinner.setVisibility(View.GONE);
+                            spinner.setVisibility(View.GONE);
                             Log.d("tag1","response is : " + response);
+                            Toast.makeText(getBaseContext(), response.toString(), Toast.LENGTH_SHORT).show();
                             JSON json = new JSON(response);
                             int code = json.key("code").intValue();
                             String message = json.key("message").stringValue();
