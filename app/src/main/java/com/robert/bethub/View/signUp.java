@@ -23,6 +23,9 @@ import com.robert.bethub.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import eu.amirs.JSON;
 import io.realm.Realm;
 
@@ -95,6 +98,10 @@ public class signUp extends AppCompatActivity {
             email.setError("Please fill up all the required fields");
             email.requestFocus();
         }
+        else if(!isEmailValid(em)){
+            email.setError("Emails is not valid");
+            email.requestFocus();
+        }
         else if(pass.isEmpty()){
             password.setError("Please fill up all the required fields");
             password.requestFocus();
@@ -103,16 +110,13 @@ public class signUp extends AppCompatActivity {
             passwordConfirmation.setError("Please fill up all the required fields");
             passwordConfirmation.requestFocus();
         }
-        else if(cc.isEmpty()){
-            couponcode.setError("Please fill up all the required fields");
-            couponcode.requestFocus();
+
+        else if(!pass.equals(passC)){
+            password.setError("Your password didn`t match please try again");
+            password.requestFocus();
+            passwordConfirmation.setError("Your password didn`t match please try again");
+            passwordConfirmation.requestFocus();
         }
-//        else if(pass != passC){
-//            password.setError("Your password didn`t match please try again");
-//            password.requestFocus();
-//            passwordConfirmation.setError("Your password didn`t match please try again");
-//            passwordConfirmation.requestFocus();
-//        }
         else{
 //            userSignUp user = new userSignUp();
 //            user.firstname = fname;
@@ -132,7 +136,7 @@ public class signUp extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            Toast.makeText(this, "Run", Toast.LENGTH_SHORT).show();
+
            spinner.setVisibility(View.VISIBLE);
             AndroidNetworking.post("https://bethub.pro/wp-json/bethubpro/v1/users/register")
                     //.addBodyParameter(user)
@@ -194,5 +198,12 @@ public class signUp extends AppCompatActivity {
                 setupUI(innerView);
             }
         }
+    }
+
+    public static boolean isEmailValid(String email) {
+        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 }
