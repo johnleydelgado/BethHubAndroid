@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+
+    android:fillViewport="false"
+    android:id="@+id/Scroolview_hide">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        android:weightSum="1">
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/btnclose"
+            android:background="@drawable/x"
+            android:layout_alignParentRight="true"
+            android:padding="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="Font Size"
+            android:id="@+id/tvfontsize"
+            android:layout_alignParentTop="true"
+            android:padding="5dp"
+            android:textColor="@android:color/white"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Size: 20"
+            android:id="@+id/size"
+            android:layout_alignParentTop="true"
+            android:textColor="@android:color/white"
+            android:layout_gravity="center_horizontal" />
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/seekBar"
+
+            android:padding="5dp"
+            android:text="Size"
+            android:progress="20"
+            android:layout_margin="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="Font Category"
+            android:id="@+id/tvtypefont"
+            android:layout_alignParentBottom="true"
+            android:padding="10dp"
+            android:textColor="@android:color/white"/>
+
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Book Antiqua"
+                    android:background="@android:color/white"
+                    android:id="@+id/Ba"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Arial"
+                    android:background="@android:color/white"
+                    android:id="@+id/Ar"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Georgina"
+                    android:background="@android:color/white"
+                    android:id="@+id/Ge"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Helvetica"
+                    android:background="@android:color/white"
+                    android:id="@+id/He"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Serif"
+                    android:background="@android:color/white"
+                    android:id="@+id/Se"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Verdana"
+                    android:background="@android:color/white"
+                    android:id="@+id/Ve"/>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+
+    </LinearLayout>
+
+
+
+</ScrollView>

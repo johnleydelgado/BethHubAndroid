@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+    android:orientation="vertical"
+android:layout_height="match_parent"
+    android:id="@+id/signupView"
+tools:context=".View.signUp">
+
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:paddingTop="40dp">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Sign Up"
+                android:textColor="@color/darkBlue"
+                android:textSize="40dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/firstnameLabel"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:hint="firstname" />
+
+            <EditText
+                android:id="@+id/lastnameLabel"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:hint="lastname" />
+
+            <EditText
+                android:id="@+id/usernameLabel"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:hint="username" />
+
+
+            <EditText
+                android:id="@+id/emailLabel"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:hint="email" />
+
+            <EditText
+                android:id="@+id/passwordLabel"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:hint="password"
+                android:inputType="textPassword" />
+
+            <EditText
+                android:id="@+id/passwordConfirmationLabel"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:hint="password confirmation"
+                android:inputType="textPassword" />
+
+            <EditText
+                android:id="@+id/couponLabel"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:hint="coupon code" />
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="I have read and agree to the Terms Of Service*" />
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="This application collects names, emails and other user information. I consent to the terms set forth in the Privacy Policy." />
+
+            <Button
+                android:id="@+id/signupButton"
+                style="@android:style/Widget.Button"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorAccent"
+                android:text="Sign up"
+                android:textColor="@android:color/white"
+                tools:background="@color/colorAccent" />
+        </LinearLayout>
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@android:style/Widget.DeviceDefault.ProgressBar.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="232dp"
+        android:layout_weight="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/scrollView2"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="@+id/scrollView2"></ProgressBar>
+</android.support.constraint.ConstraintLayout>
